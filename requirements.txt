@@ -1,7 +1,7 @@
 # CSC110 Fall 2020: Python libraries we'll be using for the project.
 
 # Testing and code checking
-doctest
+pytest
 python-ta
 
 # Data structure and manipulation
