@@ -151,13 +151,13 @@ def read_emissions_data(sector: str) -> List[Dict[str, List]]:
             emission_each_year = reversed(row[4:31])
 
             # Convert each value in the list value_each_year from str to int
-            # If value == '', keep the original str format
+            # If value == 'N/A', append ''
             convert_str_to_int = []
             for emission in emission_each_year:
                 if emission != 'N/A':
                     convert_str_to_int.append(float(emission))
                 else:
-                    convert_str_to_int.append(emission)
+                    convert_str_to_int.append('')
 
             # Put the country_code as key in the mapping, and the converted lst
             # as its value
