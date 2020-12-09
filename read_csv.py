@@ -34,6 +34,9 @@ def read_country_data() -> List[List[str]]:
         - index 2 represents its income group
         - index 3 is the full name of the country
 
+    Note: If any data is unavailable, it will be represented
+    with an empty string.
+
     >>> country = read_country_data()
     >>> country[0]
     ['AFG', 'South Asia', 'Low income', 'Afghanistan']
@@ -57,6 +60,9 @@ def read_value_data(filename: str) -> List[Dict[str, List]]:
     a list of revenue data of a specific sector from 1990 to 2016.
     This function will be used to read Agriculture value,
     Industry value and Manufacturing value, specified by the filename input.
+
+    Note: If the data for a particular year is unavailable, it is
+    represented with an empty string.
 
     Preconditions:
         - filename.startswith('datasets/')
@@ -112,6 +118,9 @@ def read_emissions_data(sector: str) -> List[Dict[str, List]]:
     differ according to the input sector name. For example, if the
     argument is "Agriculture", this function will produce a list of mapping
     containing country codes mapped to a list of agricultural emissions values.
+
+    Note: If the data for a particular year is unavailable, it is
+    represented with an empty string.
 
     Preconditions:
         - sector in ['Agriculture', 'Manufacturing', 'Industry']
