@@ -55,9 +55,11 @@ def read_country_data() -> List[List[str]]:
     return country_data_lst
 
 
-def read_value_data(filename: str) -> List[Dict[str, List]]:
-    """Return a list of mapping containing the country code mapped to
-    a list of revenue data of a specific sector from 1990 to 2016.
+def read_value_data(filename: str) -> Dict[str, List]:
+    """Return a mapping with the country codes as the keys mapped to
+    the corresponding list of revenue data of a specific sector
+    from 1990 to 2016.
+
     This function will be used to read Agriculture value,
     Industry value and Manufacturing value, specified by the filename input.
 
@@ -69,11 +71,11 @@ def read_value_data(filename: str) -> List[Dict[str, List]]:
         - filename.endswith('.csv')
 
     >>> agriculture = read_value_data('datasets/agriculture.csv')
-    >>> agriculture[0] == {'ABW': ['', '', '', '', '', 6681564.246, \
+    >>> agriculture['ABW'] == ['', '', '', '', '', 6681564.246, \
     6703910.615, 6586592.179, 6793296.089, 6603351.955, 7681564.246, \
     7779329.609, 7808379.888, 8112849.162, 8727932.961, 9012290.503, \
     9546927.374, 10597206.7, 10451955.31, 11005027.93, '', '', '', '', \
-    '', '', '']}
+    '', '', '']
     True
     """
     with open(filename, encoding='ISO-8859-1') as value_file:
@@ -82,11 +84,9 @@ def read_value_data(filename: str) -> List[Dict[str, List]]:
         # Skip header row
         next(reader)
 
-        value_data_lst = []
+        value_data_mapping = {}
 
         for row in reader:
-            country_data = {}
-
             # Collect the country code
             # Collect the list of values for the country
             country_code = str(row[1])
@@ -103,32 +103,31 @@ def read_value_data(filename: str) -> List[Dict[str, List]]:
 
             # Put the country_code as key in the mapping, and the converted lst
             # as its value
-            country_data[country_code] = convert_str_to_int
+            value_data_mapping[country_code] = convert_str_to_int
 
-            # Append the mapping back to the main value data list
-            value_data_lst.append(country_data)
-
-    return value_data_lst
+    return value_data_mapping
 
 
-def read_emissions_data(sector: str) -> List[Dict[str, List]]:
-    """Return a list of mapping containing the country code mapped to
-    a list of emissions data of a specific sector from 1990 to 2016.
+def read_emissions_data(sector: str) -> Dict[str, List]:
+    """Return a mapping with the country codes as the keys mapped to
+    the corresponding list of emissions data of a specific sector
+    from 1990 to 2016.
+
     This function reads 'emissions.csv', but the output will
     differ according to the input sector name. For example, if the
     argument is "Agriculture", this function will produce a list of mapping
     containing country codes mapped to a list of agricultural emissions values.
 
     Note: If the data for a particular year is unavailable, it is
-    represented with an empty string.
+    represented with an empty string in the list.
 
     Preconditions:
         - sector in ['Agriculture', 'Manufacturing', 'Industry']
 
     >>> manufacturing = read_emissions_data('Manufacturing')
-    >>> manufacturing[0] == {'ALB': [2.1, 1.4, 0.8, 0.5, 0.5, \
+    >>> manufacturing['ALB'] == [2.1, 1.4, 0.8, 0.5, 0.5, \
     0.5, 0.5, 0.2, 0.4, 0.5, 0.5, 0.5, 0.4, 0.5, 0.5, 0.4, 0.7, \
-    0.6, 0.5, 0.8, 1.0, 1.1, 0.6, 0.6, 0.9, 0.7, 0.6]}
+    0.6, 0.5, 0.8, 1.0, 1.1, 0.6, 0.6, 0.9, 0.7, 0.6]
     True
     """
     with open('datasets/emissions.csv', encoding='ISO-8859-1') as emission_file:
@@ -137,7 +136,7 @@ def read_emissions_data(sector: str) -> List[Dict[str, List]]:
         # Skip header row
         next(reader)
 
-        emission_data_lst = []
+        emission_data_mapping = {}
 
         sector_specified = sector
         if sector_specified == 'Manufacturing':
@@ -151,8 +150,6 @@ def read_emissions_data(sector: str) -> List[Dict[str, List]]:
         valid_rows = [r for r in reader if r[2] == sector_specified]
 
         for row in valid_rows:
-            country_data = {}
-
             # Collect the country code
             # Collect the list of values for the country. This list
             # is reversed as the columns in csv goes from 2016 to 1990.
@@ -170,12 +167,9 @@ def read_emissions_data(sector: str) -> List[Dict[str, List]]:
 
             # Put the country_code as key in the mapping, and the converted lst
             # as its value
-            country_data[country_code] = convert_str_to_int
+            emission_data_mapping[country_code] = convert_str_to_int
 
-            # Append the mapping back to the main value data list
-            emission_data_lst.append(country_data)
-
-        return emission_data_lst
+        return emission_data_mapping
 
 
 if __name__ == '__main__':
