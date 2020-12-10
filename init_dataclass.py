@@ -14,6 +14,7 @@ This file is provided solely for the personal and private use of TAs and
 instructors of  CSC110 at the University of Toronto St. George campus.
 All forms of distribution of this code, whether as given or with any changes,
 are expressly prohibited.
+
 This file is Copyright (c) 2020 Jia Hao Choo and Komal Saini.
 """
 
