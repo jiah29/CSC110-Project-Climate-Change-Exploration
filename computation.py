@@ -80,6 +80,8 @@ class Country:
         - region: A string representing the country's region.
         - income_group: A string representing the country's income group (also referred to as income classification).
         - name: A string representing the full name of the country.
+        - sector_emissions: Emissions data class object containing emission data of each sector for the country.
+        - sector_values: Values data class object containing revenue data of each sector for the country.
 
     Representation Invariants:
         - len(country_code) == 3
@@ -90,15 +92,20 @@ class Country:
     region: str
     income_group: str
     name: str
+    sector_emissions: Emissions
+    sector_values: Values
 
 
 def init_countries() -> Dict[str, Country]:
     """Returns a dictionary of Country objects keyed by the country code."""
     countries = dict()
     countries_data = read_csv.read_country_data()
+    emissions_objects = init_emissions()
+    values_objects = init_values()
     for country_data in countries_data:
         [code, region, income_group, name] = country_data
-        countries[code] = Country(country_code=code, region=region, income_group=income_group, name=name)
+        countries[code] = Country(country_code=code, region=region, income_group=income_group, name=name,
+                                  sector_emissions=emissions_objects[code], sector_values=values_objects[code])
     return countries
 
 
