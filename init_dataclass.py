@@ -14,7 +14,6 @@ This file is provided solely for the personal and private use of TAs and
 instructors of  CSC110 at the University of Toronto St. George campus.
 All forms of distribution of this code, whether as given or with any changes,
 are expressly prohibited.
-
 This file is Copyright (c) 2020 Jia Hao Choo and Komal Saini.
 """
 
@@ -90,8 +89,8 @@ class Revenue:
                                  agriculture_value=['', '', '', '', '', 6681564.246, \
                                  6703910.615, 6586592.179, 6793296.089, 6603351.955, \
                                  7681564.246, 7779329.609, 7808379.888, 8112849.162,\
-                                  8727932.961, 9012290.503, 9546927.374, 10597206.7, \
-                                  10451955.31, 11005027.93, '', '', '', '', '', '', ''])
+                                 8727932.961, 9012290.503, 9546927.374, 10597206.7, \
+                                 10451955.31, 11005027.93, '', '', '', '', '', '', ''])
      """
     country_code: str
     industry_value: list
@@ -108,7 +107,6 @@ class Country:
 
     Instance Attributes:
         - country_code: A string representing the country code.
-        - region: A string representing the country's region.
         - income_group: A string representing the country's income group.
         - name: A string representing the full name of the country.
         - sector_emissions: Emissions data class object containing
@@ -118,15 +116,13 @@ class Country:
 
     Representation Invariants:
         - len(self.country_code) == 3
-        - self.region != ''
         - self.income_group in ['High income', 'Upper middle income',
                                Lower middle income', 'Low income']
         - self.name != ''
 
-    >>> sample_country = Country('SAM', 'Asia', 'Lower middle income', 'Sample', None, None)
+    >>> sample_country = Country('SAM', 'Lower middle income', 'Sample', None, None)
     """
     country_code: str
-    region: str
     income_group: str
     name: str
     sector_emissions: Optional[Emissions] = None
@@ -138,16 +134,16 @@ def init_emissions() -> Dict[str, Emissions]:
 
     >>> sample = init_emissions()
     >>> sample['AFG'] == Emissions(country_code='AFG',\
-                                          industry_emissions=[0.05, 0.05, 0.06, 0.06,\
-                                          0.07, 0.07, 0.08, 0.1, 0.11, 0.12, 0.11, 0.12,\
-                                          0.12, 0.14, 0.14, 0.14, 0.16, 0.18, 0.2, 0.22,\
-                                          0.25, 0.31, 0.38, 0.45, 0.53, 0.59, 0.74], \
-                                          manufacture_emissions=None, \
-                                          agriculture_emissions=[8.09, 8.41, 8.42, 8.5, \
-                                          8.54, 8.97, 9.98, 10.95, 11.75, 12.79, 10.99, \
-                                          9.28, 11.57, 12.05, 11.79, 12.08, 12.05, 12.12, \
-                                          13.45, 13.86, 15.85, 15.91, 15.78, 15.73, 16.22, \
-                                          15.15, 15.35])
+                                   industry_emissions=[0.05, 0.05, 0.06, 0.06,\
+                                   0.07, 0.07, 0.08, 0.1, 0.11, 0.12, 0.11, 0.12,\
+                                   0.12, 0.14, 0.14, 0.14, 0.16, 0.18, 0.2, 0.22,\
+                                   0.25, 0.31, 0.38, 0.45, 0.53, 0.59, 0.74], \
+                                   manufacture_emissions=None, \
+                                   agriculture_emissions=[8.09, 8.41, 8.42, 8.5, \
+                                   8.54, 8.97, 9.98, 10.95, 11.75, 12.79, 10.99, \
+                                   9.28, 11.57, 12.05, 11.79, 12.08, 12.05, 12.12, \
+                                   13.45, 13.86, 15.85, 15.91, 15.78, 15.73, 16.22, \
+                                   15.15, 15.35])
     True
     """
 
@@ -196,8 +192,8 @@ def init_revenue() -> Dict[str, Revenue]:
                                  agriculture_value=['', '', '', '', '', 6681564.246, \
                                  6703910.615, 6586592.179, 6793296.089, 6603351.955, \
                                  7681564.246, 7779329.609, 7808379.888, 8112849.162,\
-                                  8727932.961, 9012290.503, 9546927.374, 10597206.7, \
-                                  10451955.31, 11005027.93, '', '', '', '', '', '', ''])
+                                 8727932.961, 9012290.503, 9546927.374, 10597206.7, \
+                                 10451955.31, 11005027.93, '', '', '', '', '', '', ''])
     True
     """
     revenues = dict()
@@ -237,10 +233,9 @@ def init_countries() -> Dict[str, Country]:
     revenues_objects = init_revenue()
 
     for country_data in countries_data:
-        if country_data[2] != '':
-            [code, region, income_group, name] = country_data
+        if country_data[1] != '':
+            [code, income_group, name] = country_data
             countries[code] = Country(country_code=code,
-                                      region=region,
                                       income_group=income_group,
                                       name=name)
 

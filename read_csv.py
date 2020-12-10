@@ -5,7 +5,7 @@ Instructions (READ THIS FIRST!)
 
 The module contains only functions that transform all data in
 csv files used in this project into usable Python data types
-for further computations in computation.py.
+for further computations in init_dataclass.py.
 
 Do not edit any function in the module.
 
@@ -30,16 +30,15 @@ def read_country_data() -> List[List[str]]:
 
     Each inner list represents the data for a particular country.
         - index 0 is the country code
-        - index 1 represents the region of the country
-        - index 2 represents its income group
-        - index 3 is the full name of the country
+        - index 1 represents its income group
+        - index 2 is the full name of the country
 
     Note: If any data is unavailable, it will be represented
     with an empty string.
 
     >>> country = read_country_data()
     >>> country[0]
-    ['AFG', 'South Asia', 'Low income', 'Afghanistan']
+    ['AFG', 'Low income', 'Afghanistan']
     """
     with open('datasets/country_metadata.csv', encoding='ISO-8859-1') as country_file:
         reader = csv.reader(country_file)
@@ -50,6 +49,7 @@ def read_country_data() -> List[List[str]]:
         country_data_lst = []
 
         for row in reader:
+            row.pop(1)
             country_data_lst.append(row)
 
     return country_data_lst
