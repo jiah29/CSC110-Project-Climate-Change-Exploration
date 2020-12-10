@@ -3,7 +3,9 @@
 Instructions (READ THIS FIRST!)
 ===============================
 
-# TO BE FILLED OUT
+Run this module in python console to generate outputs.
+
+Do not edit any function statements in this module.
 
 
 Copyright and Usage Information
@@ -16,8 +18,32 @@ are expressly prohibited.
 
 This file is Copyright (c) 2020 Jia Hao Choo and Komal Saini.
 """
+from init_dataclass import init_countries
+from computation import filter_country, find_emission_average
 
 if __name__ == '__main__':
 
-    "This file should automatically load file, perform computation \
-    and display graphics once run in console"
+    #  Read data from csv and create dataclass objects for use in computations:
+    #  This function uses other functions from init_dataclass and read_csv
+    #  to automatically read data from csv files and create dataclass objects.
+    countries = init_countries()
+
+    #  Filter the countries list into four different mappings according to
+    #  their income classifications.
+    high = filter_country(countries, 'High income')
+    upper_middle = filter_country(countries, 'Upper middle income')
+    lower_middle = filter_country(countries, 'Lower middle income')
+    low = filter_country(countries, 'Low income')
+
+    #  Find the average emission value of each sector for each income classification.
+    high_emission_average = find_emission_average(high)
+    upper_middle_emission_average = find_emission_average(upper_middle)
+    lower_middle_emission_average = find_emission_average(lower_middle)
+    low_emission_average = find_emission_average(low)
+
+    #  Find the average revenue of each sector for each income classification.
+
+    #  Creating pandas data frame object
+
+    #  Plotting
+    
