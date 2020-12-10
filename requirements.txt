@@ -1,6 +1,6 @@
-# CSC110 Fall 2020: Python libraries we'll be using for the project.
+# CSC110 Fall 2020: Python libraries we'll be using for this project.
 
-# Testing and code checking (TBC)
+# Testing and code checking
 python-ta
 
 # Data structure and manipulation
