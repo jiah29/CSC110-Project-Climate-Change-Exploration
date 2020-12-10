@@ -25,6 +25,9 @@ import statistics
 from init_dataclass import Country, Emissions, Revenue
 
 
+################################################################################
+# Part 1 - Filter country according to income classifications
+################################################################################
 def filter_country(countries_list: Dict[str, Country], classification: str) \
         -> Dict[str, Country]:
     """Return a mapping of all Country object that has the
@@ -55,6 +58,9 @@ def filter_country(countries_list: Dict[str, Country], classification: str) \
     return filtered_countries
 
 
+################################################################################
+# Part 2 - Finding the emission averages
+################################################################################
 def find_emission_average(countries_list: Dict[str, Country]) -> Dict[str, List[float]]:
     """Return the mapping of each sector to a list of averages of emission data every year
     from 1990 to 2016.
@@ -236,6 +242,10 @@ def get_emission_value(countries_list: Dict[str, Country], country: str, index: 
 
     return emission_values
 
+
+################################################################################
+# Part 3 - Finding the revenue averages
+################################################################################
 
 if __name__ == '__main__':
     import python_ta

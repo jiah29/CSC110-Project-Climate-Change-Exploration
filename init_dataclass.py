@@ -2,9 +2,9 @@
 
 Instructions (READ THIS FIRST!)
 ===============================
-This module contains data class information, and functions
+This module contains dataclass information, and functions
 that initialize and produce data class objects for use in
-init_dataclass.py.
+computation.py.
 
 Do not edit any function or data class in this module.
 
@@ -23,6 +23,9 @@ from typing import Dict, Optional
 from read_csv import read_emissions_data, read_value_data, read_country_data
 
 
+################################################################################
+# Part 1 - Creating dataclasses
+################################################################################
 @dataclass
 class Emissions:
     """A data class that represents the emissions generated
@@ -129,6 +132,9 @@ class Country:
     sector_revenues: Optional[Revenue] = None
 
 
+################################################################################
+# Part 2 - Initializing and creating dataclass objects
+################################################################################
 def init_emissions() -> Dict[str, Emissions]:
     """Returns a dictionary of Emissions objects keyed by the country code.
 
