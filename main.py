@@ -48,12 +48,49 @@ if __name__ == '__main__':
     lower_middle_average_revenue = find_average_revenue(lower_middle)
     low_average_revenue = find_average_revenue(low)
 
+    #  Combine averages into one dict
+    high_income = {}
+    high_income.update(high_average_emission)
+    high_income.update(high_average_revenue)
+
+    upper_middle_income = {}
+    upper_middle_income.update(upper_middle_average_emission)
+    upper_middle_income.update(upper_middle_average_revenue)
+
+    lower_middle_income = {}
+    lower_middle_income.update(lower_middle_average_emission)
+    lower_middle_income.update(lower_middle_average_revenue)
+
+    low_income = {}
+    low_income.update(low_average_emission)
+    low_income.update(low_average_revenue)
+
     #  Creating dataframe objects
-    high_income_df = create_dataframe(high_average_revenue, high_average_emission)
-    upper_middle_income_df = create_dataframe(upper_middle_average_revenue,
-                                              upper_middle_average_emission)
-    lower_middle_income_df = create_dataframe(lower_middle_average_revenue,
-                                              lower_middle_average_emission)
-    low_income_df = create_dataframe(low_average_revenue, low_average_emission)
+    high_income_df = create_dataframe(high_income)
+    upper_middle_income_df = create_dataframe(upper_middle_income)
+    lower_middle_income_df = create_dataframe(lower_middle_income)
+    low_income_df = create_dataframe(low_income)
 
     #  Plotting
+    import plotly.graph_objects as go
+    from plotly.subplots import make_subplots
+
+    fig = make_subplots(specs=[[{"secondary_y": True}]])
+    fig.update_layout(barmode='group')
+
+    fig.add_trace(go.Bar(x=high_income_df['Year'], y=high_income_df['Agriculture Emission'],
+                         offsetgroup=0, name='Agriculture Emission'),
+                  secondary_y=False)
+
+    fig.add_trace(go.Bar(x=high_income_df['Year'], y=high_income_df['Agriculture Revenue'],
+                         offsetgroup=1, name='Agriculture Revenue'),
+                  secondary_y=True)
+
+    fig.update_layout(
+        title_text="High Income Countries - Agriculture Sector")
+
+    fig.update_xaxes(title_text="Year")
+    fig.update_yaxes(title_text="Emission Value", secondary_y=False)
+    fig.update_yaxes(title_text="Revenue", secondary_y=True)
+
+    fig.show()
