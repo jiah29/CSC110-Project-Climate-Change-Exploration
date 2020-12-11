@@ -55,7 +55,7 @@ def read_country_data() -> List[List[str]]:
     return country_data_lst
 
 
-def read_value_data(filename: str) -> Dict[str, List]:
+def read_revenue_data(filename: str) -> Dict[str, List]:
     """Return a mapping with the country codes as the keys mapped to
     the corresponding list of revenue data of a specific sector
     from 1990 to 2016.
@@ -70,7 +70,7 @@ def read_value_data(filename: str) -> Dict[str, List]:
         - filename.startswith('datasets/')
         - filename.endswith('.csv')
 
-    >>> agriculture = read_value_data('datasets/agriculture.csv')
+    >>> agriculture = read_revenue_data('datasets/agriculture.csv')
     >>> agriculture['ABW'] == ['', '', '', '', '', 6681564.246, \
     6703910.615, 6586592.179, 6793296.089, 6603351.955, 7681564.246, \
     7779329.609, 7808379.888, 8112849.162, 8727932.961, 9012290.503, \
@@ -177,7 +177,8 @@ if __name__ == '__main__':
 
     python_ta.check_all(config={
         'max-line-length': 100,
-        'allowed-io': ['read_country_data', 'read_value_data', 'read_emissions_data'],
+        'allowed-io': ['read_country_data', 'read_value_data', 'read_emissions_data',
+                       'read_revenue_data'],
         'extra-imports': ['csv', 'python_ta.contracts'],
         'disable': ['R1705', 'C0200'],
     })
