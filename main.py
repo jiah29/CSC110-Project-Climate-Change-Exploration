@@ -5,7 +5,8 @@ Instructions (READ THIS FIRST!)
 
 Run this module in python console to generate outputs.
 
-Do not edit any function statements in this module.
+Do not edit any function statements in this module, except
+commenting and uncommenting the display_graph functions.
 
 
 Copyright and Usage Information
