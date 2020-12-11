@@ -20,8 +20,10 @@ This file is Copyright (c) 2020 Jia Hao Choo and Komal Saini.
 """
 from init_dataclass import init_countries
 from computation import filter_country, find_emission_average, find_average_revenue
+from display_graph import create_dataframe
 
 if __name__ == '__main__':
+
     #  Read data from csv and create dataclass objects for use in computations:
     #  This function uses other functions from init_dataclass and read_csv
     #  to automatically read data from csv files and create dataclass objects.
@@ -46,33 +48,12 @@ if __name__ == '__main__':
     lower_middle_average_revenue = find_average_revenue(lower_middle)
     low_average_revenue = find_average_revenue(low)
 
-    #  Creating pandas data frame object
-    import pandas
-
-    years = [str(year) for year in range(1990, 2017)]
-
-    # High average income classification
-    high_average_df = pandas.DataFrame.from_dict(high_average_revenue, orient='index', columns=years)
-    high_average_df = high_average_df.append(
-        pandas.DataFrame.from_dict(high_average_emission, orient='index', columns=years))
-    print(high_average_df)
-
-    # Upper middle average income classification
-    upper_middle_average_df = pandas.DataFrame.from_dict(upper_middle_average_revenue, orient='index', columns=years)
-    upper_middle_average_df = upper_middle_average_df.append(
-        pandas.DataFrame.from_dict(upper_middle_average_emission, orient='index', columns=years))
-    print(upper_middle_average_df)
-
-    # Lower middle average income classification
-    lower_middle_average_df = pandas.DataFrame.from_dict(lower_middle_average_revenue, orient='index', columns=years)
-    lower_middle_average_df = lower_middle_average_df.append(
-        pandas.DataFrame.from_dict(lower_middle_average_emission, orient='index', columns=years))
-    print(lower_middle_average_df)
-
-    # Low average income classification
-    low_average_df = pandas.DataFrame.from_dict(low_average_revenue, orient='index', columns=years)
-    low_average_df = low_average_df.append(
-        pandas.DataFrame.from_dict(low_average_emission, orient='index', columns=years))
-    print(low_average_df)
+    #  Creating dataframe objects
+    high_income_df = create_dataframe(high_average_revenue, high_average_emission)
+    upper_middle_income_df = create_dataframe(upper_middle_average_revenue,
+                                              upper_middle_average_emission)
+    lower_middle_income_df = create_dataframe(lower_middle_average_revenue,
+                                              lower_middle_average_emission)
+    low_income_df = create_dataframe(low_average_revenue, low_average_emission)
 
     #  Plotting
