@@ -19,7 +19,7 @@ are expressly prohibited.
 This file is Copyright (c) 2020 Jia Hao Choo and Komal Saini.
 """
 from init_dataclass import init_countries
-from computation import filter_country, find_emission_average
+from computation import filter_country, find_emission_average, find_average_revenue
 
 if __name__ == '__main__':
 
@@ -36,14 +36,18 @@ if __name__ == '__main__':
     low = filter_country(countries, 'Low income')
 
     #  Find the average emission value of each sector for each income classification.
-    high_emission_average = find_emission_average(high)
-    upper_middle_emission_average = find_emission_average(upper_middle)
-    lower_middle_emission_average = find_emission_average(lower_middle)
-    low_emission_average = find_emission_average(low)
+    high_average_emission = find_emission_average(high)
+    upper_middle_average_emission = find_emission_average(upper_middle)
+    lower_middle_average_emission = find_emission_average(lower_middle)
+    low_average_emission = find_emission_average(low)
 
     #  Find the average revenue of each sector for each income classification.
+    high_average_revenue = find_average_revenue(high)
+    upper_middle_average_revenue = find_average_revenue(upper_middle)
+    lower_middle_average_revenue = find_average_revenue(lower_middle)
+    low_average_revenue = find_average_revenue(low)
 
     #  Creating pandas data frame object
 
     #  Plotting
-    
+
