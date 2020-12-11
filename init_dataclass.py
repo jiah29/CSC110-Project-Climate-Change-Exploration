@@ -20,7 +20,7 @@ This file is Copyright (c) 2020 Jia Hao Choo and Komal Saini.
 from dataclasses import dataclass
 from typing import Dict, Optional
 
-from read_csv import read_emissions_data, read_value_data, read_country_data
+from read_csv import read_emissions_data, read_revenue_data, read_country_data
 
 
 ################################################################################
@@ -204,9 +204,9 @@ def init_revenue() -> Dict[str, Revenue]:
     """
     revenues = dict()
 
-    agriculture_data = read_value_data('datasets/agriculture.csv')
-    industry_data = read_value_data('datasets/industry.csv')
-    manufacture_data = read_value_data('datasets/manufacturing.csv')
+    agriculture_data = read_revenue_data('datasets/agriculture.csv')
+    industry_data = read_revenue_data('datasets/industry.csv')
+    manufacture_data = read_revenue_data('datasets/manufacturing.csv')
 
     for code in agriculture_data:
         revenues[code] = Revenue(country_code=code,
