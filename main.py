@@ -6,7 +6,7 @@ Instructions (READ THIS FIRST!)
 Run this module in python console to generate outputs.
 
 Do not edit any function statements in this module, except
-commenting and uncommenting the display_graph functions.
+commenting and uncommenting the plot_graph functions.
 
 
 Copyright and Usage Information
@@ -79,10 +79,10 @@ if __name__ == '__main__':
     #   uncomment the code below, and comment out other plot_graph functions.
     # plot_graph(upper_middle_income_df, 'Upper Middle Income')
 
-    #   If you want to see the graph for upper middle income countries,
+    #   If you want to see the graph for lower middle income countries,
     #   uncomment the code below, and comment out other plot_graph functions.
     # plot_graph(lower_middle_income_df, 'Lower Middle Income')
 
-    #   If you want to see the graph for upper middle income countries,
+    #   If you want to see the graph for low income countries,
     #   uncomment the code below, and comment out other plot_graph functions.
     # plot_graph(low_income_df, 'Low Income')
