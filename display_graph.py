@@ -96,8 +96,8 @@ def plot_graph(dataframe: pandas.DataFrame, group: str) -> None:
         title_text=f"{group} Countries: Agriculture")
 
     fig.update_xaxes(title_text="Year")
-    fig.update_yaxes(title_text="Emission Value", secondary_y=False)
-    fig.update_yaxes(title_text="Revenue", secondary_y=True)
+    fig.update_yaxes(title_text="Emission Value (MTCO2e)", secondary_y=False)
+    fig.update_yaxes(title_text="Revenue (US$)", secondary_y=True)
 
     fig.update_layout(
         updatemenus=[
