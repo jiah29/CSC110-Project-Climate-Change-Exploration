@@ -97,15 +97,16 @@ def find_emission_average(countries_list: Dict[str, Country]) -> Dict[str, List[
                                                 0.25, 0.31, 0.38, 0.45, 0.53, 0.59, 0.74]}
     True
     """
-    mapping_accumulator = {'Agriculture': [], 'Manufacturing': [], 'Industry': []}
+    mapping_accumulator = {'Agriculture Emission': [], 'Manufacturing Emission': [],
+                           'Industry Emission': []}
 
     for i in range(27):
 
         tuple_values = find_emission_year_average(countries_list, i)
 
-        mapping_accumulator['Agriculture'].append(tuple_values[0])
-        mapping_accumulator['Manufacturing'].append(tuple_values[1])
-        mapping_accumulator['Industry'].append(tuple_values[2])
+        mapping_accumulator['Agriculture Emission'].append(tuple_values[0])
+        mapping_accumulator['Manufacturing Emission'].append(tuple_values[1])
+        mapping_accumulator['Industry Emission'].append(tuple_values[2])
 
     return mapping_accumulator
 
@@ -292,7 +293,8 @@ def find_average_revenue(countries_list: Dict[str, Country]) -> Dict[str, List[f
                                  1533180073.0, 1375053978.0, 1425873036.0]
     True
     """
-    mapping_accumulator = {'Agriculture': [], 'Manufacturing': [], 'Industry': []}
+    mapping_accumulator = {'Agriculture Revenue': [], 'Manufacturing Revenue': [],
+                           'Industry Revenue': []}
 
     for i in range(27):
 
@@ -315,13 +317,13 @@ def find_average_revenue(countries_list: Dict[str, Country]) -> Dict[str, List[f
                 industry_year_data.append(industry_value)
 
         industry_average = statistics.mean(industry_year_data)
-        mapping_accumulator['Industry'].append(industry_average)
+        mapping_accumulator['Industry Revenue'].append(industry_average)
 
         manufacture_average = statistics.mean(manufacture_year_data)
-        mapping_accumulator['Manufacturing'].append(manufacture_average)
+        mapping_accumulator['Manufacturing Revenue'].append(manufacture_average)
 
         agriculture_average = statistics.mean(agriculture_year_data)
-        mapping_accumulator['Agriculture'].append(agriculture_average)
+        mapping_accumulator['Agriculture Revenue'].append(agriculture_average)
 
     return mapping_accumulator
 

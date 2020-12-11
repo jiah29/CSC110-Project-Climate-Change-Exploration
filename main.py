@@ -20,7 +20,7 @@ This file is Copyright (c) 2020 Jia Hao Choo and Komal Saini.
 """
 from init_dataclass import init_countries
 from computation import filter_country, find_emission_average, find_average_revenue
-from display_graph import create_dataframe
+from display_graph import create_dataframe, plot_graph
 
 if __name__ == '__main__':
 
@@ -71,26 +71,17 @@ if __name__ == '__main__':
     lower_middle_income_df = create_dataframe(lower_middle_income)
     low_income_df = create_dataframe(low_income)
 
-    #  Plotting
-    import plotly.graph_objects as go
-    from plotly.subplots import make_subplots
+    #  Plotting - default graph is for High Income countries
+    plot_graph(high_income_df, 'High Income')
 
-    fig = make_subplots(specs=[[{"secondary_y": True}]])
-    fig.update_layout(barmode='group')
+    #   If you want to see the graph for upper middle income countries,
+    #   uncomment the code below, and comment out other plot_graph functions.
+    # plot_graph(upper_middle_income_df, 'Upper Middle Income')
 
-    fig.add_trace(go.Bar(x=high_income_df['Year'], y=high_income_df['Agriculture Emission'],
-                         offsetgroup=0, name='Agriculture Emission'),
-                  secondary_y=False)
+    #   If you want to see the graph for upper middle income countries,
+    #   uncomment the code below, and comment out other plot_graph functions.
+    # plot_graph(lower_middle_income_df, 'Lower Middle Income')
 
-    fig.add_trace(go.Bar(x=high_income_df['Year'], y=high_income_df['Agriculture Revenue'],
-                         offsetgroup=1, name='Agriculture Revenue'),
-                  secondary_y=True)
-
-    fig.update_layout(
-        title_text="High Income Countries - Agriculture Sector")
-
-    fig.update_xaxes(title_text="Year")
-    fig.update_yaxes(title_text="Emission Value", secondary_y=False)
-    fig.update_yaxes(title_text="Revenue", secondary_y=True)
-
-    fig.show()
+    #   If you want to see the graph for upper middle income countries,
+    #   uncomment the code below, and comment out other plot_graph functions.
+    # plot_graph(low_income_df, 'Low Income')

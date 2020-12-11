@@ -1,10 +1,1 @@
-# CSC110 Fall 2020: Python libraries we'll be using for this project.
-
-# Testing and code checking
-python-ta
-
-# Data structure and manipulation
-pandas
-
-# Graphics and data visualization
-plotly
+# CSC110 Fall 2020: Python libraries we'll be using for this project.# Testing and code checkingpython-ta# Data structure and manipulationpandas# Graphics and data visualizationplotly
