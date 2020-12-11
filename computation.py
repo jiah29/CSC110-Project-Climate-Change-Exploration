@@ -28,14 +28,13 @@ from init_dataclass import Country
 ################################################################################
 # Part 1 - Filter country according to income classifications
 ################################################################################
-def filter_country(countries_list: Dict[str, Country], classification: str) \
+def filter_country(countries_list: Dict[str, Country], income_group: str) \
         -> Dict[str, Country]:
     """Return a mapping of all Country object that has the
     classification.
 
     Preconditions:
-        - classification in ['High income', 'Upper middle income',
-                               Lower middle income', 'Low income']
+      - income_group in ['High income', 'Upper middle income', 'Lower middle income', 'Low income']
 
     >>> countries_lst = {'CO1': Country('CO1', 'High income', 'Country 1', None, None),\
                     'CO2': Country('CO2', 'High income', 'Country 2', None, None),\
@@ -52,7 +51,7 @@ def filter_country(countries_list: Dict[str, Country], classification: str) \
     filtered_countries = dict()
 
     for country in countries_list:
-        if countries_list[country].income_group == classification:
+        if countries_list[country].income_group == income_group:
             filtered_countries[country] = countries_list[country]
 
     return filtered_countries
@@ -80,11 +79,9 @@ def find_emission_average(countries_list: Dict[str, Country]) -> Dict[str, List[
                               9.28, 11.57, 12.05, 11.79, 12.08, 12.05, 12.12, \
                               13.45, 13.86, 15.85, 15.91, 15.78, 15.73, 16.22, \
                               15.15, 15.35])
-
     >>> countries_lst = {'CO1': Country('CO1', 'High income', 'Country 1', emissions, None),\
                     'CO2': Country('CO2', 'High income', 'Country 2', emissions, None),\
                     'CO3': Country('CO3', 'Low income', 'Country 3', emissions, None),}
-
     >>> find_emission_average(countries_lst) == {'Agriculture': [8.09, 8.41, 8.42, 8.5, \
                                                 8.54, 8.97, 9.98, 10.95, 11.75, 12.79, 10.99, \
                                                 9.28, 11.57, 12.05, 11.79, 12.08, 12.05, 12.12, \
@@ -139,7 +136,6 @@ def find_emission_year_average(countries_list: Dict[str, Country], index: int) -
                               9.28, 11.57, 12.05, 11.79, 12.08, 12.05, 12.12, \
                               13.45, 13.86, 15.85, 15.91, 15.78, 15.73, 16.22, \
                               15.15, 15.35])
-
     >>> emissions2 = Emissions(country_code='CO1',\
                               industry_emissions=[2.1, 1.4, 0.8, 0.5, 0.5, \
                               0.5, 0.5, 0.2, 0.4, 0.5, 0.5, 0.5, 0.4, 0.5, 0.5, \
@@ -154,11 +150,9 @@ def find_emission_year_average(countries_list: Dict[str, Country], index: int) -
                               9.28, 11.57, 12.05, 11.79, 12.08, 12.05, 12.12, \
                               13.45, 13.86, 15.85, 15.91, 15.78, 15.73, 16.22, \
                               15.15, 15.35])
-
     >>> countries_lst = {'CO1': Country('CO1', 'High income', 'Country 1', emissions, None),\
                     'CO2': Country('CO2', 'High income', 'Country 2', emissions2, None),\
                     'CO3': Country('CO3', 'Low income', 'Country 3', emissions2, None)}
-
     >>> find_emission_year_average(countries_lst, 0)
     (8.09, 0.7333333333333334, 1.4166666666666667)
     """
@@ -209,11 +203,9 @@ def get_emission_value(countries_list: Dict[str, Country], country: str, index: 
                                   9.28, 11.57, 12.05, 11.79, 12.08, 12.05, 12.12, \
                                   13.45, 13.86, 15.85, 15.91, 15.78, 15.73, 16.22, \
                                   15.15, 15.35])
-
     >>> countries_lst = {'CO1': Country('CO1', 'High income', 'Country 1', co1_emissions, None),\
                     'CO2': Country('CO2', 'High income', 'Country 2', None, None),\
                     'CO3': Country('CO3', 'Low income', 'Country 3', None, None)}
-
     >>> get_emission_value(countries_lst, 'CO1', 0)
     {'Industry': 0.05, 'Agriculture': 8.09}
 
@@ -272,43 +264,32 @@ def find_average_revenue(countries_list: Dict[str, Country]) -> Dict[str, List[f
                            819644243.9, 918701113.3, 1091911087.0, 1224970417.0, \
                            1275246305.0, 1227306585.0, 1402783044.0, 1299101612.0, \
                            1367254712.0, 1533180073.0, 1375053978.0, 1425873036.0])
-
     >>> revenue2 = Revenue(country_code='CO2', \
                           industry_value=['', '', '', '', '', 33251396.65, \
                           34636871.51, 37944134.08, 46530726.26, 62011173.18, \
                           73480446.93, 74039106.15, 74597765.36, 75156424.58, \
                           75715083.8, 76273743.02, 76832402.23, 77391061.45, \
                           77949720.67, 78508379.89, '', '', '', '', '', '', ''], \
+                          agriculture_value=['', '', '', '', '', 6681564.246, \
+                          6703910.615, 6586592.179, 6793296.089, 6603351.955, \
+                          7681564.246, 7779329.609, 7808379.888, 8112849.162, \
+                          8727932.961, 9012290.503, 9546927.374, 10597206.7, \
+                          10451955.31, 11005027.93, '', '', '', '', '', '', ''], \
                           manufacture_value=['', '', '', '', '', 203335195.5, \
                           206810055.9, 262463687.2, 291620111.7, 267882681.6, \
                           296480446.9, 305515642.5, 296703352.0, 339418994.4, \
                           392163687.2, 431287150.8, 474557541.9, 496345810.1, \
-                          495007262.6, 404204469.3, '', '', '', '', '', '', ''], \
-                          agriculture_value=['', '', '', '', '', 6681564.246, \
-                          6703910.615, 6586592.179, 6793296.089, 6603351.955, \
-                          7681564.246, 7779329.609, 7808379.888, 8112849.162,\
-                          8727932.961, 9012290.503, 9546927.374, 10597206.7, \
-                          10451955.31, 11005027.93, '', '', '', '', '', '', ''])
-
+                          495007262.6, 404204469.3, '', '', '', '', '', '', ''])
     >>> countries_lst = {'CO1': Country('CO1', 'High income', 'Country 1', None, revenue1),\
-                    'CO2': Country('CO2', 'Low income', 'Country 2', None, revenue2)}
-
-    >>> find_average_revenue(countries_lst) == {'Agriculture': [457411497.0, 419369381.6, \
-    324233493.7, 331783780.7, 254877213.2, 171343838.123, 176252324.0575, 178995380.23950002, \
-    196942327.6945, 137099521.8775, 230873642.023, 242021217.5045, 271621254.04399997, \
-    372717644.381, 416332600.63049996, 414328267.2015, 464124020.33699995, 551254146.85, \
-    617711186.155, 643125666.465, 1227306585.0, 1402783044.0, 1299101612.0, 1367254712.0, \
-    1533180073.0, 1375053978.0, 1425873036.0], \
-    'Manufacturing': [457411497.0, 419369381.6, 324233493.7, 331783780.7, 254877213.2, \
-    269670653.75, 276305396.7, 306933927.75, 339355735.5, 267739186.7, 375273083.35, \
-    390889373.95, 416068740.1, 538370717.0, 608050477.75, 625465697.35, 696629327.5999999, \
-    794128448.55, 859988839.8, 839725387.15, 1227306585.0, 1402783044.0, 1299101612.0, \
-    1367254712.0, 1533180073.0, 1375053978.0, 1425873036.0], \
-    'Industry': [457411497.0, 419369381.6, 324233493.7, 331783780.7, 254877213.2, \
-    184628754.325, 190218804.505, 194674151.19, 216811042.78, 164803432.49, 263773083.365, \
-    275151105.775, 305015946.78, 406239432.09000003, 449826176.04999995, 447958993.46, \
-    497766757.765, 584651074.225, 651460068.835, 676877342.445, 1227306585.0, 1402783044.0, \
-    1299101612.0, 1367254712.0, 1533180073.0, 1375053978.0, 1425873036.0]}
+                        'CO2': Country('CO2', 'Low income', 'Country 2', None, revenue2)}
+    >>> sample = find_average_revenue(countries_lst)
+    >>> sample['Agriculture'] == [457411497.0, 419369381.6, 324233493.7, 331783780.7,\
+                                 254877213.2,171343838.123, 176252324.0575, 178995380.23950002,\
+                                 196942327.6945, 137099521.8775, 230873642.023, 242021217.5045,\
+                                 271621254.04399997, 372717644.381, 416332600.63049996, \
+                                 414328267.2015, 464124020.33699995,551254146.85, 617711186.155,\
+                                 643125666.465, 1227306585.0, 1402783044.0, 1299101612.0, 1367254712.0,\
+                                 1533180073.0, 1375053978.0, 1425873036.0]
     True
     """
     mapping_accumulator = {'Agriculture': [], 'Manufacturing': [], 'Industry': []}
