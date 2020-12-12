@@ -43,7 +43,6 @@ def read_country_data() -> List[List[str]]:
     with open('datasets/country_metadata.csv', encoding='ISO-8859-1') as country_file:
         reader = csv.reader(country_file)
 
-        # Skip header row
         next(reader)
 
         country_data_lst = []
@@ -81,19 +80,15 @@ def read_revenue_data(filename: str) -> Dict[str, List]:
     with open(filename, encoding='ISO-8859-1') as value_file:
         reader = csv.reader(value_file)
 
-        # Skip header row
         next(reader)
 
         value_data_mapping = {}
 
         for row in reader:
-            # Collect the country code
-            # Collect the list of values for the country
+
             country_code = str(row[1])
             value_each_year = row[3:30]
 
-            # Convert each value in the list value_each_year from str to int
-            # If value == '', keep the original str format
             convert_str_to_int = []
             for value in value_each_year:
                 if value != '':
@@ -101,8 +96,6 @@ def read_revenue_data(filename: str) -> Dict[str, List]:
                 else:
                     convert_str_to_int.append(value)
 
-            # Put the country_code as key in the mapping, and the converted lst
-            # as its value
             value_data_mapping[country_code] = convert_str_to_int
 
     return value_data_mapping
@@ -133,7 +126,6 @@ def read_emissions_data(sector: str) -> Dict[str, List]:
     with open('datasets/emissions.csv', encoding='ISO-8859-1') as emission_file:
         reader = csv.reader(emission_file)
 
-        # Skip header row
         next(reader)
 
         emission_data_mapping = {}
@@ -146,18 +138,14 @@ def read_emissions_data(sector: str) -> Dict[str, List]:
         else:
             pass
 
-        # Filter only the rows with the specified sector
         valid_rows = [r for r in reader if r[2] == sector_specified]
 
         for row in valid_rows:
-            # Collect the country code
-            # Collect the list of values for the country. This list
-            # is reversed as the columns in csv goes from 2016 to 1990.
+
+            # The list is reversed as the columns in csv goes from 2016 to 1990.
             country_code = str(row[1])
             emission_each_year = reversed(row[4:31])
 
-            # Convert each value in the list value_each_year from str to int
-            # If value == 'N/A', append ''
             convert_str_to_int = []
             for emission in emission_each_year:
                 if emission != 'N/A':
@@ -165,8 +153,6 @@ def read_emissions_data(sector: str) -> Dict[str, List]:
                 else:
                     convert_str_to_int.append('')
 
-            # Put the country_code as key in the mapping, and the converted lst
-            # as its value
             emission_data_mapping[country_code] = convert_str_to_int
 
         return emission_data_mapping
