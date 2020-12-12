@@ -28,9 +28,16 @@ from plotly.subplots import make_subplots
 ################################################################################
 # Part 1 - Create pandas dataframe objects
 ################################################################################
-def create_dataframe(average_revenue: Dict[str, List[float]]) -> pandas.DataFrame:
+def create_dataframe(average: Dict[str, List[float]]) -> pandas.DataFrame:
     """Return a dataframe object that stores average revenue and average
-    emission data in rows, with each column representing each year.
+    emission data from the dict.
+
+    There are 7 columns: the first column is the year column,
+    the second to fourth columns are the Emission value of each sector,
+    the fifth to last columns represent the Revenue of each sector.
+
+    There are 26 rows (representing year 1990 to 2016, with each row
+    representing the data specified by each column title.
 
     >>> from computation import find_emission_average, find_average_revenue
     >>> from init_dataclass import init_countries
@@ -46,7 +53,7 @@ def create_dataframe(average_revenue: Dict[str, List[float]]) -> pandas.DataFram
     >>> sample_df.loc[0, "Agriculture Emission"]
     26.694414893617022
     """
-    df = pandas.DataFrame.from_dict(average_revenue, orient='columns')
+    df = pandas.DataFrame.from_dict(average, orient='columns')
 
     years = [str(year) for year in range(1990, 2017)]
 
