@@ -26,6 +26,10 @@ from display_graph import create_dataframe, plot_graph
 
 if __name__ == '__main__':
 
+    ################################################################################
+    # Non-editable Part - Do not edit any function call or statement in this section.
+    ################################################################################
+
     #  Read data from csv and create dataclass objects for use in computations:
     #  This function uses other functions from init_dataclass and read_csv
     #  to automatically read data from csv files and create dataclass objects.
@@ -72,6 +76,10 @@ if __name__ == '__main__':
     upper_middle_income_df = create_dataframe(upper_middle_income)
     lower_middle_income_df = create_dataframe(lower_middle_income)
     low_income_df = create_dataframe(low_income)
+
+    ################################################################################
+    # Editable Part - Feel free to uncomment and comment the functions below.
+    ################################################################################
 
     #  Plotting - default graph is for High Income countries
     plot_graph(high_income_df, 'High Income')
