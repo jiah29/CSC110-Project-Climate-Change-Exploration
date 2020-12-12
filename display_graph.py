@@ -64,6 +64,18 @@ def plot_graph(dataframe: pandas.DataFrame, group: str) -> None:
 
     Preconditions:
         - group in ['High Income', 'Upper Middle Income', 'Lower Middle Income', 'Low Income']
+
+    >>> from computation import find_emission_average, find_average_revenue, filter_country
+    >>> from init_dataclass import init_countries
+    >>> countries = init_countries()
+    >>> high = filter_country(countries, 'High income')
+    >>> average_emissions = find_emission_average(high)
+    >>> average_revenues = find_average_revenue(high)
+    >>> high_income = {}
+    >>> high_income.update(average_emissions)
+    >>> high_income.update(average_revenues)
+    >>> sample_df = create_dataframe(high_income)
+    >>> plot_graph(sample_df, 'High Income')
     """
     fig = make_subplots(specs=[[{"secondary_y": True}]])
     fig.update_layout(barmode='group')
