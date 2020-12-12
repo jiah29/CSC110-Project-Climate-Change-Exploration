@@ -103,7 +103,9 @@ class Revenue:
 
 @dataclass
 class Country:
-    """A data class that represents a country.
+    """A data class that represents a country, with information on its
+    coutry_code, income_group, name, and also the emissions and revenues
+    data of each sector.
 
     If a country does not have the corresponding revenues or emissions data,
     its instance attributes sector_emissions or sector_values will be None
