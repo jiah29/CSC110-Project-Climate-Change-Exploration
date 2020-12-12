@@ -30,8 +30,8 @@ from init_dataclass import Country
 ################################################################################
 def filter_country(countries_list: Dict[str, Country], income_group: str) \
         -> Dict[str, Country]:
-    """Return a mapping of all Country object that has the
-    classification.
+    """Return a mapping of all Country object that belong to the income
+    group specified.
 
     Preconditions:
       - income_group in ['High income', 'Upper middle income', 'Lower middle income', 'Low income']
@@ -61,8 +61,8 @@ def filter_country(countries_list: Dict[str, Country], income_group: str) \
 # Part 2 - Finding the emission averages
 ################################################################################
 def find_emission_average(countries_list: Dict[str, Country]) -> Dict[str, List[float]]:
-    """Return the mapping of each sector to a list of averages of emission data every year
-    from 1990 to 2016.
+    """Return the mapping of each sector to a list of averages of emission data of
+    each sector from all countries in countries_list in each year from 1990 to 2016.
 
     >>> from init_dataclass import Emissions
     >>> emissions = Emissions(country_code='CO1',\
@@ -114,9 +114,13 @@ def find_emission_average(countries_list: Dict[str, Country]) -> Dict[str, List[
 
 def find_emission_year_average(countries_list: Dict[str, Country], index: int) -> \
         Tuple[float, float, float]:
-    """Find the emission average for a particular year, represented by the index.
-    Return a tuple of three float, with  each float representing the average
+    """Find the emission average for a particular year, specified by the index.
+    Return a tuple of three float, with each float representing the average
     of each sector.
+
+    Index 0 of tuple represents the emission of agricultural sector.
+    Index 1 of tuple represents the emission of manufacture sector.
+    Index 2 of tuple represents the emission of industry sector.
 
     Helper function for find_emission_average.
 
@@ -185,7 +189,12 @@ def find_emission_year_average(countries_list: Dict[str, Country], index: int) -
 def get_emission_value(countries_list: Dict[str, Country], country: str, index: int) -> \
         Dict[str, float]:
     """Return a tuple of three floats, with each float representing the
-    value of emission of each sector.
+    value of emission of each sector of a specified country in
+    a particular year, specified by the index.
+
+    Index 0 of tuple represents the emission of agricultural sector.
+    Index 1 of tuple represents the emission of manufacture sector.
+    Index 2 of tuple represents the emission of industry sector.
 
     Helper function for find_emission_year_average.
 
@@ -240,8 +249,8 @@ def get_emission_value(countries_list: Dict[str, Country], country: str, index: 
 # Part 3 - Finding the revenue averages
 ################################################################################
 def find_average_revenue(countries_list: Dict[str, Country]) -> Dict[str, List[float]]:
-    """Return the mapping of each sector to a list of averages of emission data every year
-    from 1990 to 2016.
+    """Return the mapping of each sector to a list of averages of revenue of each
+    sector from all countries in countries_list in each year from 1990 to 2016.
 
     >>> from init_dataclass import Revenue
     >>> revenue1 = Revenue(country_code='CO1', \
