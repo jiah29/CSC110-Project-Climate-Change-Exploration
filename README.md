@@ -8,3 +8,5 @@ https://www.overleaf.com/1275915827ynbmdsykrgjv
 
 Link to Final Submission information and requirements:
 https://www.teach.cs.toronto.edu/~csc110y/fall/projects/phase2/
+
+ALL MODULES REVIEWED AND COMPLETED - FRIDAY 11 DEC
