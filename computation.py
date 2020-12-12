@@ -79,9 +79,12 @@ def find_emission_average(countries_list: Dict[str, Country]) -> Dict[str, List[
                               9.28, 11.57, 12.05, 11.79, 12.08, 12.05, 12.12, \
                               13.45, 13.86, 15.85, 15.91, 15.78, 15.73, 16.22, \
                               15.15, 15.35])
+    >>> emissions2 = Emissions(country_code='CO2',\
+                              industry_emissions=None, \
+                              manufacture_emissions=None, \
+                              agriculture_emissions=None)
     >>> countries_lst = {'CO1': Country('CO1', 'High income', 'Country 1', emissions, None),\
-                    'CO2': Country('CO2', 'High income', 'Country 2', emissions, None),\
-                    'CO3': Country('CO3', 'Low income', 'Country 3', emissions, None),}
+                    'CO2': Country('CO2', 'High income', 'Country 2', emissions2, None)}
     >>> find_emission_average(countries_lst) == {'Agriculture Emission': [8.09, 8.41,\
                                                 8.42, 8.5, 8.54, 8.97, 9.98, 10.95, \
                                                 11.75, 12.79, 10.99, 9.28, 11.57, \
@@ -159,8 +162,13 @@ def find_emission_year_average(countries_list: Dict[str, Country], index: int) -
     >>> countries_lst = {'CO1': Country('CO1', 'High income', 'Country 1', emissions, None),\
                     'CO2': Country('CO2', 'High income', 'Country 2', emissions2, None),\
                     'CO3': Country('CO3', 'Low income', 'Country 3', emissions2, None)}
-    >>> find_emission_year_average(countries_lst, 0)
-    (8.09, 0.7333333333333334, 1.4166666666666667)
+    >>> import math
+    >>> math.isclose(find_emission_year_average(countries_lst, 0)[0], 8.09, rel_tol= 0.01)
+    True
+    >>> math.isclose(find_emission_year_average(countries_lst, 0)[1], 0.73, rel_tol= 0.01)
+    True
+    >>> math.isclose(find_emission_year_average(countries_lst, 0)[2], 1.42, rel_tol= 0.01)
+    True
     """
     industry_year_data = []
     manufacture_year_data = []

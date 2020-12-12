@@ -50,8 +50,6 @@ def create_dataframe(average: Dict[str, List[float]]) -> pandas.DataFrame:
     >>> sample_df = create_dataframe(average)
     >>> sample_df.loc[0, "Agriculture Revenue"]
     6025401740.822624
-    >>> sample_df.loc[0, "Agriculture Emission"]
-    26.694414893617022
     """
     df = pandas.DataFrame.from_dict(average, orient='columns')
 

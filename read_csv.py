@@ -39,6 +39,9 @@ def read_country_data() -> List[List[str]]:
     >>> country = read_country_data()
     >>> country[0]
     ['AFG', 'Low income', 'Afghanistan']
+    >>> non_country_example = country[98] # These will be filtered out during computations
+    >>> non_country_example == ['HPC', '', 'Heavily indebted poor countries (HIPC)']
+    True
     """
     with open('datasets/country_metadata.csv', encoding='ISO-8859-1') as country_file:
         reader = csv.reader(country_file)
@@ -121,6 +124,11 @@ def read_emissions_data(sector: str) -> Dict[str, List]:
     >>> manufacturing['ALB'] == [2.1, 1.4, 0.8, 0.5, 0.5, \
     0.5, 0.5, 0.2, 0.4, 0.5, 0.5, 0.5, 0.4, 0.5, 0.5, 0.4, 0.7, \
     0.6, 0.5, 0.8, 1.0, 1.1, 0.6, 0.6, 0.9, 0.7, 0.6]
+    True
+    >>> special_case = manufacturing['KHM']
+    >>> special_case == ['', '', '', '', '', 0.0, 0.0, 0.0, 0.1, \
+                        0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, \
+                        0.1, 0.2, 0.2, 0.2, 0.2, 0.3, 0.2, 0.2, 0.7]
     True
     """
     with open('datasets/emissions.csv', encoding='ISO-8859-1') as emission_file:
