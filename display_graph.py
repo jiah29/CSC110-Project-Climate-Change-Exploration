@@ -44,10 +44,10 @@ def create_dataframe(average: Dict[str, List[float]]) -> pandas.DataFrame:
     >>> countries = init_countries()
     >>> average_emissions = find_emission_average(countries)
     >>> average_revenues = find_average_revenue(countries)
-    >>> average = {}
-    >>> average.update(average_emissions)
-    >>> average.update(average_revenues)
-    >>> sample_df = create_dataframe(average)
+    >>> average_combined = {}
+    >>> average_combined.update(average_emissions)
+    >>> average_combined.update(average_revenues)
+    >>> sample_df = create_dataframe(average_combined)
     >>> sample_df.loc[0, "Agriculture Revenue"]
     6025401740.822624
     """
