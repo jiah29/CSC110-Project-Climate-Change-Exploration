@@ -1,5 +1,6 @@
 # Relationship between Money & Climate Change
 Python Project by Jia Hao Choo &amp; Komal Saini
+
 University of Toronto St George Campus CSC110 Foundations of Computer Science I - Final Project
 
 NOTE: The PDF project_report contains greater details on our project, including our project description in depth, computational overview, instructions in getting started to run the program, discussions on our findings, challenges and opportunities for futher explorations. Feel free to read through it first to understand our project better.
